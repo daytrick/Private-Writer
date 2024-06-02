@@ -5,6 +5,8 @@
 class Code {
 
     // Attributes
+    /** Display name. */
+    name;
     /** 
      * Encode a given string. 
      * @param text the string
@@ -21,11 +23,13 @@ class Code {
     /**
      * Create a code.
      * 
+     * @param {String}   name
      * @param {Function} encode 
      * @param {Function} decode 
      */
-    constructor(encode, decode) {
+    constructor(name, encode, decode) {
 
+        this.name = name;
         this.encode = encode;
         this.decode = decode;
 
@@ -52,6 +56,7 @@ class Code {
 ////////// INSTANCES //////////
 
 const MIRROR = new Code(
+    "mirror",
     (plaintext) => {
 
         return Code.doPerChar((c) => {
@@ -116,15 +121,30 @@ var currentCode = MIRROR;
  */
 window.onload = () => {
 
+    // Encode all loaded data
+    encodeAllTextNodes();
+    // Make sure will encode dynamically loaded data
+    setInterval(encodeAllTextNodes, 1000);
+
+}
+
+/**
+ * Encode all text nodes that haven't been encoded yet.
+ */
+function encodeAllTextNodes() {
+
     // Get all text nodes
     for (const textNode of getTextNodesIterator(document.body)) {
+    
+        // Encode them if necessary
+        if (!"encoded" in textNode || !textNode.encoded) {
+            let content = textNode.textContent;
+            let newContent = currentCode.encode(content);
+            // textNode.ogValue = content;
+            textNode.textContent = newContent;
+            textNode.encoded = true;
+        }
         
-        // Encode them
-        let content = textNode.textContent;
-        let newContent = currentCode.encode(content);
-        textNode.ogValue = content;
-        textNode.textContent = newContent;
-
     }
 
 }

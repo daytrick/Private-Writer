@@ -3,6 +3,12 @@
     "name": "Private Writer",
     "version": "1",
     "description": "Encode and decode the things you see or write on your screen.",
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
     "content_scripts": [
         {
             "js": [
