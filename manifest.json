@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Private Writer",
+    "version": "1",
+    "description": "Encode and decode the things you see or write on your screen.",
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/content.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
