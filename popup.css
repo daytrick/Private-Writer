@@ -1,7 +1,7 @@
 /********* POPUP *********/
 
-html {
-    width: 200px;  /* max: 800px */
+html.popup {
+    width: 300px;  /* max: 800px */
     height: 300px; /* max: 600px */
     background-color:rgb(55, 55, 55);
     color: white;

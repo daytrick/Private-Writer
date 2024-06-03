@@ -133,6 +133,13 @@ window.onload = () => {
  */
 function encodeAllTextNodes() {
 
+    // TODO: fix
+    // Check if need to encode
+    if (!chrome.storage.local["privateWriterOn"]) {
+        console.log("Private Writer is off");
+        return;
+    }
+
     // Get all text nodes
     for (const textNode of getTextNodesIterator(document.body)) {
     
